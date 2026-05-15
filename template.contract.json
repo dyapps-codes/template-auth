@@ -1,0 +1,624 @@
+{
+  "contract_version": "1",
+  "slug": "template-auth",
+  "version": "1.0.0",
+  "name": "Private Auth Dashboard",
+  "short_description": "Base privada con login, signup, recuperacion de password, layout interno, sidebar, dashboard y panel de usuarios admin.",
+  "long_description": "Starter Vite + React + TypeScript para aplicaciones privadas. Incluye rutas publicas de auth, rutas protegidas, AppLayout con sidebar, dashboard inicial, navegacion centralizada, gestion de usuarios y roles para administradores usando el SDK DYPAI. No trae backend de dominio: el agente debe crear las tablas y endpoints especificos de la funcionalidad que pida el usuario.",
+  "status": "staging",
+  "template_type": "base",
+  "maturity": "stable",
+  "quality_score": 0.9,
+  "source": {
+    "kind": "github",
+    "project_id": null,
+    "organization_id": null,
+    "branch": "studio",
+    "environment": "dev",
+    "repo": "dyapps-codes/template-auth",
+    "ref": "main",
+    "path": "",
+    "uri": "https://github.com/dyapps-codes/template-auth",
+    "notes": "Currently installed from the GitHub artifact repo. Link project_id later if this template is promoted to project-backed export automation."
+  },
+  "export_contract": {
+    "source": "dypai_project",
+    "artifact_repo": "dyapps-codes/template-auth",
+    "artifact_path": "",
+    "include": {
+      "frontend": true,
+      "database_schema": true,
+      "endpoints": true,
+      "workflows": true,
+      "schedules": true,
+      "roles": true,
+      "endpoint_groups": true,
+      "buckets": true,
+      "webhooks": true,
+      "assets": true,
+      "preview_image": true,
+      "template_contract": true
+    },
+    "frontend_source": {
+      "branch": "studio",
+      "prefer_latest_studio_artifact": true,
+      "fallback_to_github_repo": true
+    },
+    "backend_source": {
+      "export_service": "app.services.template_export.export_project_template",
+      "install_service": "app.services.template_install.install_template_to_project"
+    },
+    "publish_rule": "Do not mark staging/published until source.project_id is linked and the export manifest has been generated."
+  },
+  "selection": {
+    "categories": [
+      "base",
+      "private-app",
+      "auth",
+      "admin",
+      "dashboard"
+    ],
+    "tags": [
+      "vite",
+      "react",
+      "typescript",
+      "tailwind",
+      "shadcn",
+      "auth",
+      "signup",
+      "admin-users",
+      "roles",
+      "sidebar",
+      "dashboard"
+    ],
+    "aliases": [
+      "auth app",
+      "app privada",
+      "dashboard privado",
+      "admin panel",
+      "panel con login",
+      "backoffice",
+      "intranet",
+      "app para mi empresa",
+      "panel de gestion",
+      "herramienta interna",
+      "sistema de control",
+      "gestor de negocio",
+      "plataforma interna",
+      "aplicacion con login",
+      "app con usuarios",
+      "panel para mi equipo"
+    ],
+    "first_message_examples": [
+      "Necesito una app para gestionar mis clientes",
+      "Quiero un panel privado para controlar mi negocio",
+      "Hazme un CRM sencillo para mi empresa",
+      "Una herramienta interna para que mi equipo lleve las tareas",
+      "Necesito una app con login para gestionar datos",
+      "Quiero un dashboard donde pueda ver registros y crear nuevos",
+      "Hazme un sistema para administrar usuarios y operaciones",
+      "Necesito un panel de gestion para mi empresa"
+    ],
+    "negative_examples": [
+      "Quiero una landing page para mi marca",
+      "Necesito una web publica con catalogo",
+      "Hazme una pagina de marketing",
+      "Quiero un portfolio bonito con formulario",
+      "Necesito una tienda online completa",
+      "Quiero una web publica de restaurante con reservas"
+    ],
+    "use_case_keywords": {
+      "primary": [
+        "dashboard",
+        "admin",
+        "panel",
+        "gestion",
+        "crm",
+        "backoffice",
+        "intranet",
+        "herramienta interna"
+      ],
+      "natural_language": [
+        "gestionar",
+        "controlar",
+        "administrar",
+        "supervisar",
+        "llevar mi negocio",
+        "mi equipo",
+        "mis clientes",
+        "mis datos"
+      ],
+      "domains": [
+        "empresa",
+        "equipo",
+        "staff",
+        "usuarios",
+        "operaciones",
+        "clientes",
+        "registros"
+      ],
+      "actions": [
+        "crear registros",
+        "listar datos",
+        "editar datos",
+        "gestionar usuarios",
+        "ver metricas",
+        "controlar procesos"
+      ],
+      "anti": [
+        "landing",
+        "marketing",
+        "portfolio",
+        "web publica",
+        "catalogo publico",
+        "ecommerce",
+        "restaurante"
+      ]
+    },
+    "industries": [
+      "general"
+    ],
+    "use_cases": [
+      "private-dashboard",
+      "admin-panel",
+      "crm",
+      "internal-tool",
+      "operations-panel",
+      "user-management",
+      "member-portal"
+    ],
+    "visual_styles": [
+      "clean-dashboard",
+      "professional-saas",
+      "dense-admin",
+      "modern-backoffice"
+    ],
+    "best_for": [
+      "Apps privadas donde todo o casi todo vive detras de login.",
+      "Dashboards, CRMs, paneles de gestion, backoffices y herramientas internas.",
+      "Productos que necesitan usuarios, roles, sidebar y varias paginas privadas.",
+      "Primer build incremental con una pantalla funcional dentro de /dashboard o una ruta privada nueva."
+    ],
+    "not_for": [
+      "Landing publica pura sin login; usar template-blank-web o una plantilla web.",
+      "Apps mixtas con web publica + admin privado; usar template-blank-mixed cuando exista.",
+      "Verticales con plantilla dedicada como reservas, clinica, gimnasio, ecommerce o restaurante.",
+      "Apps donde el usuario solo quiere una pagina de marketing rapida."
+    ]
+  },
+  "agent_decision_signals": {
+    "must_match_one_of": [
+      "admin",
+      "dashboard",
+      "panel",
+      "gestion",
+      "crm",
+      "backoffice",
+      "internal_tool",
+      "login",
+      "usuarios"
+    ],
+    "must_not_match": [
+      "landing",
+      "marketing",
+      "public_only",
+      "portfolio",
+      "ecommerce",
+      "restaurant_reservations"
+    ],
+    "ambiguous_signal_action": "try_more_specific_template_first",
+    "fallback_priority": 5,
+    "selection_hint": "Usar cuando el usuario describe una app privada o un panel de gestion, no una web publica."
+  },
+  "access_profile": {
+    "app_visibility": "private",
+    "auth_scope": "private_routes",
+    "has_public_area": false,
+    "has_admin_area": true,
+    "root_requires_auth": true,
+    "home_path": "/dashboard",
+    "login_path": "/login",
+    "sign_up_path": "/signup",
+    "forgot_password_path": "/forgot-password",
+    "password_recovery_path": "/reset-password",
+    "admin_users_path": "/admin/users",
+    "notes": "Las rutas de auth son publicas. Las rutas de producto viven dentro de AppLayout y ProtectedRoute."
+  },
+  "routes": [
+    {
+      "path": "/dashboard",
+      "name": "Dashboard",
+      "visibility": "private",
+      "component": "src/pages/Dashboard.tsx",
+      "purpose": "Pantalla privada inicial. El agente puede convertirla en el modulo principal o crear una ruta privada nueva."
+    },
+    {
+      "path": "/workspace",
+      "name": "Workspace",
+      "visibility": "private",
+      "component": "src/pages/PlaceholderPage.tsx",
+      "purpose": "Placeholder privado reemplazable."
+    },
+    {
+      "path": "/settings",
+      "name": "Settings",
+      "visibility": "private",
+      "component": "src/pages/PlaceholderPage.tsx",
+      "purpose": "Placeholder para configuracion."
+    },
+    {
+      "path": "/admin/users",
+      "name": "Admin users",
+      "visibility": "admin",
+      "component": "src/pages/admin/AdminUsers.tsx",
+      "purpose": "Gestion de usuarios y roles usando client.users y client.roles."
+    },
+    {
+      "path": "/login",
+      "name": "Login",
+      "visibility": "public",
+      "component": "src/pages/Login.tsx",
+      "purpose": "Acceso con email/password."
+    },
+    {
+      "path": "/signup",
+      "name": "Signup",
+      "visibility": "public",
+      "component": "src/pages/SignUp.tsx",
+      "purpose": "Registro publico si el proyecto lo permite."
+    },
+    {
+      "path": "/forgot-password",
+      "name": "Forgot password",
+      "visibility": "public",
+      "component": "src/pages/ForgotPassword.tsx",
+      "purpose": "Solicitud de recuperacion de password."
+    },
+    {
+      "path": "/reset-password",
+      "name": "Reset password",
+      "visibility": "public",
+      "component": "src/pages/ResetPassword.tsx",
+      "purpose": "Cambio de password tras recovery."
+    }
+  ],
+  "design_system": {
+    "color_space": "HSL",
+    "theme_file": "src/index.css",
+    "tailwind_version": "3.x",
+    "fonts": {
+      "sans": "Geist (loaded via Google Fonts)",
+      "display": "Geist (same family; use font-display utility for hero headings)",
+      "mono": "Geist Mono"
+    },
+    "palette": {
+      "intent": "professional + warm accent (blue primary, orange accent)",
+      "primary": "214 84% 56%",
+      "accent": "24 100% 60%",
+      "background": "0 0% 100%",
+      "secondary": "220 26% 18%",
+      "text": "224 15% 15%",
+      "light_mode": "default HSL tokens in src/index.css",
+      "dark_mode": "available via .dark class on html"
+    },
+    "animations": [
+      {
+        "name": "animate-entrance",
+        "purpose": "Premium slide-up + fade. Apply to hero sections and key surfaces"
+      },
+      {
+        "name": "animate-reveal",
+        "purpose": "Clip-path reveal left-to-right. Apply to logos, brand marks, key headings"
+      },
+      {
+        "name": "animate-marquee",
+        "purpose": "Infinite horizontal scroll. Use for client logos, badges, partner rows"
+      },
+      {
+        "name": "animate-fade-in",
+        "purpose": "Light fade-up on scroll or initial mount"
+      }
+    ],
+    "easing": "--ease-out-expo (cubic-bezier(0.19, 1, 0.22, 1)) is the premium curve. Prefer it over default ease-out for marketing surfaces",
+    "shadows": [
+      "shadow-soft",
+      "shadow-medium",
+      "shadow-strong"
+    ],
+    "gradients": [
+      "bg-gradient-primary",
+      "bg-gradient-hero",
+      "bg-gradient-accent"
+    ],
+    "reusable_classes": [
+      {
+        "class": "btn-hero",
+        "purpose": "Accent gradient button with lift on hover"
+      },
+      {
+        "class": "btn-professional",
+        "purpose": "Primary button with soft/medium shadow transition"
+      },
+      {
+        "class": "section-gradient",
+        "purpose": "Subtle muted-to-background background for sections"
+      },
+      {
+        "class": "hero-gradient",
+        "purpose": "Big secondary-to-primary gradient for hero or auth side panel"
+      },
+      {
+        "class": "hover-lift",
+        "purpose": "Cards or cards-like surfaces lift 4px on hover"
+      }
+    ],
+    "guidance": "Edit src/index.css to retune the palette by changing the HSL values in :root. Keep the Tailwind 3/shadcn token structure (hsl(var(--token))). Keep this HSL color system unless the template is migrated first. Use existing animate-* utilities and reusable classes instead of inventing new patterns. Private-app surfaces should prioritize dense, functional UI over decorative marketing sections."
+  },
+  "frontend_contract": {
+    "framework": "vite-react",
+    "language": "typescript",
+    "router": "react-router-dom",
+    "styling": "tailwindcss 3 + shadcn/ui (HSL CSS variables in src/index.css)",
+    "icons": "lucide-react",
+    "state": [
+      "@tanstack/react-query",
+      "React state"
+    ],
+    "sdk": {
+      "client_file": "src/lib/dypai.ts",
+      "import": "import { dypai } from '@/lib/dypai'",
+      "api_patterns": [
+        "dypai.api.get(name)",
+        "dypai.api.post(name, body)",
+        "dypai.api.upload(name, file)"
+      ],
+      "auth_patterns": [
+        "useAuth()",
+        "useDypaiClient()",
+        "ProtectedRoute",
+        "client.users.*",
+        "client.roles.*"
+      ]
+    },
+    "entrypoints": [
+      "src/main.tsx",
+      "src/App.tsx"
+    ],
+    "files": [
+      "src/App.tsx",
+      "src/config/navigation.ts",
+      "src/components/layout/AppLayout.tsx",
+      "src/components/layout/Sidebar.tsx",
+      "src/components/layout/AuthLayout.tsx",
+      "src/pages/Dashboard.tsx",
+      "src/pages/PlaceholderPage.tsx",
+      "src/pages/admin/AdminUsers.tsx",
+      "src/pages/Login.tsx",
+      "src/pages/SignUp.tsx",
+      "src/pages/ForgotPassword.tsx",
+      "src/pages/ResetPassword.tsx",
+      "src/lib/dypai.ts",
+      "src/lib/app-config.ts",
+      "src/index.css"
+    ],
+    "important_directories": [
+      "src/components/layout",
+      "src/components/ui",
+      "src/config",
+      "src/hooks",
+      "src/lib",
+      "src/pages",
+      "src/pages/admin"
+    ],
+    "safe_to_replace": [
+      "src/pages/Dashboard.tsx",
+      "src/pages/PlaceholderPage.tsx"
+    ],
+    "safe_to_extend": [
+      "src/App.tsx",
+      "src/config/navigation.ts",
+      "src/components/layout/Sidebar.tsx"
+    ],
+    "preserve_unless_requested": [
+      "src/lib/dypai.ts",
+      "src/pages/Login.tsx",
+      "src/pages/SignUp.tsx",
+      "src/pages/ForgotPassword.tsx",
+      "src/pages/ResetPassword.tsx",
+      "src/pages/admin/AdminUsers.tsx"
+    ],
+    "expected_first_build_surface": {
+      "max_new_pages": 1,
+      "primary_file": "src/pages/Dashboard.tsx",
+      "guidance": "Crear una primera funcionalidad privada completa: pantalla + datos reales si aplica + ruta/nav. No construir toda la suite en la primera pasada."
+    }
+  },
+  "backend_contract": {
+    "mode": "empty-domain-backend",
+    "has_dypai_folder": false,
+    "built_in_capabilities": [
+      "auth",
+      "roles",
+      "admin-user-management"
+    ],
+    "endpoints": [],
+    "workflows": [],
+    "guidance": [
+      "No crear endpoints de autenticacion: auth y gestion de usuarios ya viven en el SDK.",
+      "Crear tablas y endpoints de dominio solo para la funcionalidad de producto.",
+      "Si una pantalla guarda/lista datos, crear endpoint real y validarlo antes de cerrar.",
+      "No usar fetch directo; conectar UI con dypai.api.get/post/upload."
+    ]
+  },
+  "backend_reuse_contract": {
+    "existing_tables": [],
+    "existing_endpoints": [],
+    "existing_workflows": [],
+    "platform_capabilities": [
+      "auth",
+      "roles",
+      "admin-user-management"
+    ],
+    "must_reuse": [
+      "Auth del SDK DYPAI",
+      "ProtectedRoute",
+      "client.users para administracion de usuarios",
+      "client.roles para listar roles"
+    ],
+    "may_extend": [
+      "Crear tablas de dominio",
+      "Crear endpoints de dominio",
+      "Anadir rutas privadas al sidebar"
+    ],
+    "must_not_duplicate": [
+      "No crear endpoints de login/signup/password recovery",
+      "No crear tabla users propia para auth",
+      "No duplicar roles si system.roles ya cubre el caso"
+    ]
+  },
+  "database_contract": {
+    "mode": "empty-domain-schema",
+    "schema_path": null,
+    "tables": [],
+    "system_tables_used": [
+      "system.users",
+      "system.roles",
+      "system.auth_config"
+    ],
+    "guidance": [
+      "No hay tablas de dominio en la plantilla.",
+      "Usar user_id TEXT cuando una tabla pertenezca al usuario autenticado.",
+      "No usar user_id UUID ni casts ::uuid para auth.user.id.",
+      "No hardcodear roles: los roles reales salen de client.roles.list()."
+    ]
+  },
+  "asset_contract": {
+    "public_assets": [],
+    "generated_images": [],
+    "guidance": [
+      "Para pantallas privadas, priorizar UI densa y funcional antes que imagen decorativa.",
+      "Si el usuario pide branding visual o landing, considerar plantilla mixed/web o generar assets concretos."
+    ]
+  },
+  "media_plan": {
+    "should_generate_images": false,
+    "default_image_count": 0,
+    "max_image_count": 2,
+    "image_targets": [],
+    "guidance": "En apps privadas, generar imagenes solo si el usuario pide branding, una portada visual o una seccion publica. Priorizar UI funcional."
+  },
+  "default_first_screen": {
+    "page": "src/pages/Dashboard.tsx",
+    "shape": "dashboard privado con 3-4 metric cards, una tabla principal, estado vacio y accion primaria",
+    "data_strategy": "crear backend real si el usuario pide persistencia; usar estado local solo para demo visual minima",
+    "interaction": "boton principal abre dialog o formulario; guardar/listar datos si hay backend",
+    "routing": "si se crea una pagina nueva, registrarla en src/App.tsx y src/config/navigation.ts"
+  },
+  "agent_brief": {
+    "already_included": [
+      "Auth publica: login, signup, forgot password y reset password",
+      "Rutas privadas protegidas con ProtectedRoute",
+      "AppLayout con sidebar, breadcrumbs y titulos centralizados",
+      "Dashboard inicial en src/pages/Dashboard.tsx",
+      "Panel admin de usuarios y roles en /admin/users",
+      "SDK DYPAI configurado en src/lib/dypai.ts",
+      "shadcn/ui, Tailwind, react-query y sonner listos"
+    ],
+    "adaptation_steps": [
+      "Cambiar nombre y tono visual segun el negocio del usuario",
+      "Convertir Dashboard.tsx en la primera funcionalidad privada real",
+      "Actualizar src/config/navigation.ts si anades una ruta privada",
+      "Crear tabla y endpoint solo para la funcionalidad principal que necesite datos",
+      "Conectar la UI con dypai.api.get/post/upload, nunca con fetch directo",
+      "Validar build y backend antes de cerrar"
+    ],
+    "do_not_rebuild": [
+      "No rehacer auth, login, signup ni recovery",
+      "No crear endpoints de autenticacion",
+      "No crear tabla users propia para auth",
+      "No duplicar AdminUsers salvo que el usuario lo pida",
+      "No convertir esta plantilla en landing publica"
+    ],
+    "first_build_goal": "Dejar una primera pantalla privada funcional, adaptada al negocio, con una interaccion real y backend si la funcionalidad requiere persistencia.",
+    "completion_checks": [
+      "La app compila",
+      "La ruta nueva aparece en la navegacion si corresponde",
+      "El login sigue funcionando",
+      "No hay llamadas api.call ni fetch directo",
+      "Si hay datos, existe endpoint real validado"
+    ]
+  },
+  "customization_targets": [
+    {
+      "key": "app_name",
+      "files": [
+        "src/lib/app-config.ts"
+      ],
+      "description": "Nombre visible de la app y rutas base."
+    },
+    {
+      "key": "private_navigation",
+      "files": [
+        "src/config/navigation.ts",
+        "src/App.tsx"
+      ],
+      "description": "Items del sidebar, titulos, breadcrumbs y rutas privadas."
+    },
+    {
+      "key": "primary_dashboard",
+      "files": [
+        "src/pages/Dashboard.tsx"
+      ],
+      "description": "Pantalla privada principal para convertir en primer modulo funcional."
+    },
+    {
+      "key": "domain_backend",
+      "files": [
+        "dypai/**"
+      ],
+      "description": "Tablas y endpoints de dominio que el agente debe crear si hay persistencia."
+    },
+    {
+      "key": "theme",
+      "files": [
+        "src/index.css"
+      ],
+      "description": "Tokens visuales, densidad y estilo del backoffice."
+    }
+  ],
+  "verification_contract": {
+    "commands": [
+      "npm run build"
+    ],
+    "manual_checks": [
+      "Login, signup y recovery siguen accesibles.",
+      "/dashboard redirige a login si no hay sesion.",
+      "El sidebar muestra la ruta nueva si el agente anade una pantalla privada.",
+      "AdminUsers sigue protegido por rol admin.",
+      "No hay fetch directo para llamadas DYPAI."
+    ],
+    "agent_checks": [
+      "Si se crea backend de dominio, validarlo antes de cerrar.",
+      "Si se anade una ruta privada, actualizar App.tsx y src/config/navigation.ts.",
+      "Si el usuario pide una web publica, no forzarla dentro de esta plantilla; preferir mixed/web."
+    ]
+  },
+  "required_env_vars": [
+    "VITE_DYPAI_URL"
+  ],
+  "required_integrations": [],
+  "preferred_providers": {
+    "frontend": "vite",
+    "auth": "better-auth via DYPAI SDK",
+    "backend": "DYPAI workflows"
+  },
+  "dependencies": [
+    "@dypai-ai/client-sdk",
+    "@tanstack/react-query",
+    "react-router-dom",
+    "lucide-react",
+    "sonner",
+    "zod"
+  ],
+  "agent_instructions": "Usa esta plantilla para apps privadas, dashboards, CRMs, herramientas internas y backoffices. Auth, signup, recovery, roles, sidebar y admin users ya existen: no rehagas esas piezas. Para el primer build crea una funcionalidad privada completa y pequena: pantalla, ruta/nav y backend real solo si necesita datos. Si anades datos persistentes, crea tabla + endpoint y conecta con dypai.api.get/post/upload. No uses fetch directo ni api.call. No conviertas esto en landing publica; si el usuario pide web publica + admin, busca plantilla mixed."
+}
